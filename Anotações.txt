@@ -1,0 +1,35 @@
+- Tem como pelo Spring Initializr ou direto pelo SpringBoot (Eclipse IDE)
+
+- Pelo SpringInitializr -> Escolhe as opções que deseja (Junto com as dependências) e depois gera
+- Depois de gerado, pega o arquivo zip e extrai em algum pasta exclusiva para projetos
+- No STS, vá em File -> Import -> Maven -> Existing Maven Projects -> Coloca o diretório onde está o projeto -> Finish -> Feito!
+
+RODANDO O PROJETO
+- No STS, no canto inferior esquerdo tem a parte local, expande ela e vá até o projeto desejado -> Botão direito, (Re)start
+- Vai no navegador e da localhost:porta (Normalmente é a 8080, tem de conferir nos logs quando roda)
+
+CONFIGURANDO GIT
+- Abre a pasta do projeto -> botão direito e inicialiaza o git bash 
+- Antes de tudo, configura o user e o email: git config --global user.email/name "..."
+
+- Vamos configurar o SSH: ssh-keygen -t rsa -b 4096 -C "teu-email@exemplo.com"
+- eval "$(ssh-agent -s)" -> ssh-add ~/.ssh/id_rsa -> cat ~/.ssh/id_rsa.pub
+- Copia a chave que aparecer e depois abre o GitHub -> Configurações do perfil -> SSH and GPH Keys -> Ney SSH Key -> Nomeia, cola e salva 
+- Roda pra ver se tá tudo certo: ssh -T git@github.com
+- Agora tenta dar um push: git push -u origin main
+
+- CMD: git init -> git add . -> git commit -m "Comentário" -> git branch -M main (Trocar da raiz master pro main) -> git remote add origin (pega o link do SSH) -> git push -u origin main (Jogar as paradas dessa pasta pro main)
+
+CHECKLIST DAS ENTIDADES (Usar como exemplo a entidade "User")
+Basic entity checklist:
+ Basic attributes
+ Associations (instantiate collections)
+ Constructors
+ Getters & Setters (collections: only get)
+ hashCode & equals
+ Serializable
+
+SERIALIZABLE
+Serializable nas entidades no Spring Boot tem muito a ver com como os objetos são transformados em bytes pra poderem ser salvos ou transmitidos, tipo quando cê quer jogar os dados na sessão, cache ou mandar por uma fila de mensagens.
+
+Na real, não precisa implementar em tudo. Se sua entidade não vai ser usada em cache, sessão, mensageria ou transporte de dados, pode ignorar o Serializable sem crise. Mas, por padrão, a galera coloca em tudo só pra evitar dor de cabeça futura.
